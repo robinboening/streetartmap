@@ -1,0 +1,24 @@
+.location {
+  padding: 1rem;
+
+  .entry {
+    padding: 1rem;
+  }
+
+  .detail {
+    text-align: center;
+  }
+
+  .entry p {
+    @include inline-block(top);
+  }
+
+  .entry img {
+    width: 80px;
+    margin-right: 1rem;
+  }
+
+  .entry:nth-child(odd) {
+    background: #F4F4F4;
+  }
+}

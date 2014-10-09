@@ -1,0 +1,40 @@
+Signart.controller "MapController", [ "$scope", "leafletEvents", "Location", "markerLocation", ($scope, leafletEvents, Location, markerLocation) ->
+    angular.extend($scope, {
+      tiles:
+        url: 'https://tiles.lyrk.org/ls/{z}/{x}/{y}?apikey={apikey}',
+        options:
+          apikey: '<%= Rails.configuration.lyrk_token %>'
+          attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, Tiles by <a href="http://geodienste.lyrk.de/">Lyrk</a>'
+    })
+
+    $scope.center = {
+      lat: 52.52000659999999,
+      lng: 13.404954,
+      zoom: 12
+    }
+
+    $scope.markers = []
+
+    markerLocation.query().then (locations) ->
+      $(locations).each (index, location) ->
+        $scope.markers["#{location['id']}"] = {
+          lat: location['latitude'],
+          lng: location['longitude'],
+          message: "<img src="+location['thumbnail']+"><p>#{location['fullAddress']}</p>"
+        }
+
+    $scope.events = {
+      markers: {
+        enable: leafletEvents.getAvailableMarkerEvents(),
+      }
+    }
+
+    $scope.$on 'leafletDirectiveMarker.popupopen', (event, args) ->
+      Location.get(args.markerName).then (location) ->
+        $scope.popupActive = true
+        $scope.location = location
+
+    $scope.$on 'leafletDirectiveMarker.popupclose', (event, args) ->
+      $scope.popupActive = false
+
+]

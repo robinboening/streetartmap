@@ -1,0 +1,9 @@
+.location[ng-controller="locationCtrl"]
+  .entry[ng-show="!popupActive" ng-repeat="location in locations"]
+    img src="{{location.thumbnail}}"
+    p
+      | {{location.fullAddress}}<br>Uploaded at: {{location.createdAt}}
+  .detail[ng-show="popupActive"]
+    h3
+      | {{location.fullAddress}}<br>Uploaded at: {{location.createdAt}}
+    img[ng-src="{{location.picture}}"]

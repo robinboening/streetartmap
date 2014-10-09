@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  = image_tag(@location.sign_url)
+p
+  strong Street:
+  = @location.street
+p
+  strong City:
+  = @location.city
+p
+  strong Zip:
+  = @location.zip
+p
+  strong Country:
+  = @location.country
+
+= link_to 'Edit', edit_location_path(@location)

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lat: MyString
+  long: MyString
+  city_id: 
+  cached_city: MyString
+  country_id: 
+  cashed_country: MyString
+
+two:
+  lat: MyString
+  long: MyString
+  city_id: 
+  cached_city: MyString
+  country_id: 
+  cashed_country: MyString
