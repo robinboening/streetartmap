@@ -1,4 +1,4 @@
-Signart.controller "MapController", [ "$scope", "leafletEvents", "Location", "markerLocation", ($scope, leafletEvents, Location, markerLocation) ->
+Signart.controller "MapCtrl", [ "$scope", "$location", "leafletEvents", "Location", "markerLocation", ($scope, $location, leafletEvents, Location, markerLocation) ->
     angular.extend($scope, {
       tiles:
         url: 'https://tiles.lyrk.org/ls/{z}/{x}/{y}?apikey={apikey}',
@@ -29,12 +29,19 @@ Signart.controller "MapController", [ "$scope", "leafletEvents", "Location", "ma
       }
     }
 
+    $scope.$on 'leafletDirectiveMarker.mouseover', (event, args) ->
+      $scope.hovered_marker = args.markerName
+
+    $scope.$on 'leafletDirectiveMarker.mouseout', (event, args) ->
+      $scope.hovered_marker = false
+
     $scope.$on 'leafletDirectiveMarker.popupopen', (event, args) ->
       Location.get(args.markerName).then (location) ->
-        $scope.popupActive = true
         $scope.location = location
+        $location.path "/locations/#{location.id}"
 
     $scope.$on 'leafletDirectiveMarker.popupclose', (event, args) ->
       $scope.popupActive = false
+      window.history.back()
 
 ]

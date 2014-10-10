@@ -1,8 +1,6 @@
 Signart.directive 'locations', ->
   return {
-    restrict: 'A'
-    scope:
-      show: '='
-    transclude: true
+    restrict: 'E'
+    replace: true
     templateUrl: 'angular/templates/locations.html'
   }

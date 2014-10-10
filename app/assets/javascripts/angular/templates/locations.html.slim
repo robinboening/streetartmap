@@ -1,9 +1,5 @@
-.location[ng-controller="locationCtrl"]
-  .entry[ng-show="!popupActive" ng-repeat="location in locations"]
+.location
+  .entry[ng-repeat="location in locations" ng-class="{highlight:hovered_marker==location.id}"]
     img src="{{location.thumbnail}}"
     p
       | {{location.fullAddress}}<br>Uploaded at: {{location.createdAt}}
-  .detail[ng-show="popupActive"]
-    h3
-      | {{location.fullAddress}}<br>Uploaded at: {{location.createdAt}}
-    img[ng-src="{{location.picture}}"]
