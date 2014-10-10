@@ -10,12 +10,12 @@ html ng-app="signart"
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
-  body[ng-controller="MainCtrl" ng-cloak]
+  body[ng-controller="MainCtrl"]
     header
+      = link_to 'Show List', root_path, class: 'button', "ng-class" => "{active:isActive('#{root_path}')}"
       = link_to 'Add Sign', new_location_path, class: 'button', "ng-class" => "{active:isActive('#{new_location_path}')}"
-      = link_to 'Show List', root_path, class: 'button', "ng-class" => "{active:isActive('/')}"
 
     .map[ng-controller="MapCtrl"]
-      leaflet event-broadcast="events" center="center" tiles="tiles" markers="markers"
+      leaflet event-broadcast="events" defaults="defaults" center="center" tiles="tiles" markers="markers"
 
-    .content[ng-view]
+    .content[ng-view ng-cloak]

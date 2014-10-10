@@ -1,19 +1,20 @@
 Signart.controller "MapCtrl", [ "$scope", "$location", "leafletEvents", "Location", "markerLocation", ($scope, $location, leafletEvents, Location, markerLocation) ->
-    angular.extend($scope, {
+    angular.extend $scope,
       tiles:
         url: 'https://tiles.lyrk.org/ls/{z}/{x}/{y}?apikey={apikey}',
         options:
           apikey: '<%= Rails.configuration.lyrk_token %>'
           attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, Tiles by <a href="http://geodienste.lyrk.de/">Lyrk</a>'
-    })
-
-    $scope.center = {
-      lat: 52.52000659999999,
-      lng: 13.404954,
-      zoom: 12
-    }
-
-    $scope.markers = []
+      center:
+        lat: 52.52000659999999,
+        lng: 13.404954,
+        zoom: 12
+      defaults:
+        scrollWheelZoom: false
+      markers: []
+      events:
+        markers:
+          enable: leafletEvents.getAvailableMarkerEvents()
 
     markerLocation.query().then (locations) ->
       $(locations).each (index, location) ->
@@ -23,17 +24,11 @@ Signart.controller "MapCtrl", [ "$scope", "$location", "leafletEvents", "Locatio
           message: "<img src="+location['thumbnail']+"><p>#{location['fullAddress']}</p>"
         }
 
-    $scope.events = {
-      markers: {
-        enable: leafletEvents.getAvailableMarkerEvents(),
-      }
-    }
+    # $scope.$on 'leafletDirectiveMarker.mouseover', (event, args) ->
+    #   $scope.hovered_marker = args.markerName
 
-    $scope.$on 'leafletDirectiveMarker.mouseover', (event, args) ->
-      $scope.hovered_marker = args.markerName
-
-    $scope.$on 'leafletDirectiveMarker.mouseout', (event, args) ->
-      $scope.hovered_marker = false
+    # $scope.$on 'leafletDirectiveMarker.mouseout', (event, args) ->
+    #   $scope.hovered_marker = false
 
     $scope.$on 'leafletDirectiveMarker.popupopen', (event, args) ->
       Location.get(args.markerName).then (location) ->
@@ -42,6 +37,6 @@ Signart.controller "MapCtrl", [ "$scope", "$location", "leafletEvents", "Locatio
 
     $scope.$on 'leafletDirectiveMarker.popupclose', (event, args) ->
       $scope.popupActive = false
-      window.history.back()
+      $location.path "/"
 
 ]

@@ -2,6 +2,7 @@
   padding: 1rem;
 
   .entry {
+    display: block;
     @include transition-property(background);
     @include transition-duration(0.3s);
     padding: 1rem;

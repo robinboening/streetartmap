@@ -5,5 +5,4 @@ Signart.controller "locationCtrl", ['$scope', 'Location', '$routeParams', ($scop
   else
     Location.query().then (results) ->
       $scope.locations = results
-      $scope.list = true
 ]

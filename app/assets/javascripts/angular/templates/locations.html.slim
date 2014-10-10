@@ -1,5 +1,5 @@
 .location
-  .entry[ng-repeat="location in locations" ng-class="{highlight:hovered_marker==location.id}"]
+  a.entry[ng-repeat="location in locations" href="/locations/{{location.id}}"]
     img src="{{location.thumbnail}}"
     p
       | {{location.fullAddress}}<br>Uploaded at: {{location.createdAt}}
