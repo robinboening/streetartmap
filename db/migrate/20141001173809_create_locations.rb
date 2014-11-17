@@ -8,6 +8,7 @@ class CreateLocations < ActiveRecord::Migration
       t.string :city, index: true
       t.string :country, index: true
       t.string :sign
+      t.boolean :locked, index: true, null: false, default: true
       t.timestamps
     end
   end

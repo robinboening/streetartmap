@@ -6,7 +6,8 @@ Signart.config ['$routeProvider', '$locationProvider', ($routeProvider, $locatio
       controller: 'locationCtrl'
       templateUrl: 'angular/templates/locations.html'
     .when '/locations/new',
-      templateUrl: 'angular/templates/sign_form.html'
+      controller: 'locationCtrl'
+      templateUrl: 'angular/templates/location_form.html'
     .when '/locations/:id',
       controller: 'locationCtrl'
       templateUrl: 'angular/templates/location.html'

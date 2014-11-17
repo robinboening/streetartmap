@@ -1,0 +1,11 @@
+#first-step[ng-show="firstStep"]
+  h1 Where is the sign located at?
+  .map[map]
+
+#second-step[ng-show="secondStep"]
+  h1 Please select your photo
+  form enctype='multipart/form-data' ng-controller="locationCtrl" ng-submit="postLocation($event, location)" accept-charset="UTF-8" name="new_location" action="/api/locations" method="post"
+    input[type="text" name="longitude" ng-model="location.longitude"]
+    input[type="text" name="latitude" ng-model="location.latitude"]
+    / input[type="file" name="sign" ng-model="location.sign"]
+    button[type="submit"] Done!

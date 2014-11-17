@@ -8,14 +8,10 @@ html ng-app="signart"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-    = csrf_meta_tags
+    / = csrf_meta_tags
 
-  body[ng-controller="MainCtrl"]
+  body[ng-controller="mainCtrl"]
     header
       = link_to 'Show List', root_path, class: 'button', "ng-class" => "{active:isActive('#{root_path}')}"
       = link_to 'Add Sign', new_location_path, class: 'button', "ng-class" => "{active:isActive('#{new_location_path}')}"
-
-    .map[ng-controller="MapCtrl"]
-      leaflet event-broadcast="events" defaults="defaults" center="center" tiles="tiles" markers="markers"
-
     .content[ng-view ng-cloak]
