@@ -19,5 +19,6 @@
 //= require angularjs-rails-resource
 //= require angular-rails-templates
 //= require angular-leaflet-directive
+//= require ng-file-upload/dist/angular-file-upload
 //= require angular-application
 //= require_tree ./angular

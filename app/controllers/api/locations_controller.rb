@@ -11,12 +11,11 @@ module Api
     end
 
     def create
-      params.delete(:format)
-      params[:sign] = params.delete(:file)
-      binding.pry
+      params['location'] = JSON.parse params['location']
+      params['location']['sign'] = params.delete 'sign'
       @location = Location.new(location_params)
       if @location.save
-        head 200
+        head :created#, location: location_path(@location)
       else
         head 400, status: :unprocessable_entity
       end

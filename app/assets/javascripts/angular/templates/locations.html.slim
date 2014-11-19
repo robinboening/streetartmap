@@ -2,6 +2,6 @@
 
 .location
   a.entry[ng-repeat="location in locations" href="/locations/{{location.id}}" ng-mouseover="markerPopup(location.id)"]
-    img src="{{location.thumbnail}}"
+    img ng-src="{{location.thumbnail}}"
     p
       | {{location.fullAddress}}<br>Uploaded at: {{location.createdAt}}
