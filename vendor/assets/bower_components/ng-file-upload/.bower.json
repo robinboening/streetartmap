@@ -1,0 +1,12 @@
+{
+  "name": "ng-file-upload",
+  "homepage": "https://github.com/danialfarid/angular-file-upload",
+  "_release": "be903",
+  "_resolution": {
+    "type": "commit",
+    "commit": "be903"
+  },
+  "_source": "git://github.com/danialfarid/angular-file-upload.git",
+  "_target": "be903",
+  "_originalSource": "git://github.com/danialfarid/angular-file-upload"
+}
