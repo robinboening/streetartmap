@@ -6,6 +6,7 @@
     width: 300px;
     img, p { @include inline-block(top) }
     p {
+      font-size: 12px;
       width: 160px;
       margin: 0 0 0 15px;
     }

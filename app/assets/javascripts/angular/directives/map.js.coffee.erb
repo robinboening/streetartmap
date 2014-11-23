@@ -11,10 +11,7 @@ Signart.directive 'map', [ "$location", "leafletEvents", "leafletData", "Locatio
             options:
               apikey: 'ad096084a0a5478bada572b547d2cac2'
               attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, Tiles by <a href="http://geodienste.lyrk.de/">Lyrk</a>'
-          center:
-            lat: 52.52000659999999
-            lng: 13.404954
-            zoom: 12
+          center: {}
           defaults:
             scrollWheelZoom: false
           markers: []
@@ -31,8 +28,6 @@ Signart.directive 'map', [ "$location", "leafletEvents", "leafletData", "Locatio
           }
 
           scope.$on "leafletDirectiveMap.click", (event, args) ->
-            scope.firstStep = false
-            scope.secondStep = true
             leafEvent = args.leafletEvent
             scope.location = {
               latitude: leafEvent.latlng.lat
@@ -45,9 +40,10 @@ Signart.directive 'map', [ "$location", "leafletEvents", "leafletData", "Locatio
               message: "My new Sign"
               focus: true
             }
+
+            scope.showMap = true
+            scope.createLocation()
         else
-          if $routeParams.id
-            scope.center['zoom'] = 14
           markerLocation.query().then (locations) ->
             $(locations).each (index, location) ->
               scope.markers["#{location['id']}"] = {
@@ -56,6 +52,18 @@ Signart.directive 'map', [ "$location", "leafletEvents", "leafletData", "Locatio
                 focus: ("#{$routeParams.id}" == "#{location['id']}")
                 message: "<img src="+location['thumbnail']+"><p>#{location['fullAddress']}</p>"
               }
+              if location['id'] == parseInt($routeParams.id, 10)
+                scope.center = {
+                  lat: location['latitude']
+                  lng: location['longitude']
+                }
+              else
+                scope.center = {
+                  lat: 52.52000659999999
+                  lng: 13.404954
+                }
+            scope.center['autoDiscover'] = true unless $routeParams.id
+            scope.center['zoom'] = 14
 
           scope.$on 'leafletDirectiveMarker.mouseover', (event, args) ->
             scope.hovered_marker = args.markerName
@@ -69,7 +77,6 @@ Signart.directive 'map', [ "$location", "leafletEvents", "leafletData", "Locatio
               $location.path "/locations/#{location.id}"
 
           scope.$on 'leafletDirectiveMarker.popupclose', (event, args) ->
-            scope.popupActive = false
             $location.path "/"
     }
 ]

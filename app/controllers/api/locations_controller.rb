@@ -11,13 +11,14 @@ module Api
     end
 
     def create
+      params['location'] = {} unless params['location']
       params['location'] = JSON.parse params['location']
       params['location']['sign'] = params.delete 'sign'
       @location = Location.new(location_params)
       if @location.save
-        head :created#, location: location_path(@location)
+        head :created, location: @location
       else
-        head 400, status: :unprocessable_entity
+        head 400, status: :unprocessable_entity, errors: @location.errors.full_messages.join("<br>")
       end
     end
 

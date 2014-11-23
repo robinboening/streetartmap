@@ -13,9 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require leaflet
+//= require exif-js/exif
 //= require angular
 //= require angular-route
 //= require angular-resource
+//= require angular-animate
+//= require angular-sanitize
 //= require angularjs-rails-resource
 //= require angular-rails-templates
 //= require angular-leaflet-directive

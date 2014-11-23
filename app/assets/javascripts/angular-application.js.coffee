@@ -1,3 +1,3 @@
 @Signart = angular.module("signart", [
-  "leaflet-directive", "ngRoute", "templates", "rails", "angularFileUpload"
+  "leaflet-directive", "ngSanitize", "ngRoute", "ngAnimate", "templates", "rails", "angularFileUpload"
 ])

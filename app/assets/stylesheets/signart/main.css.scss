@@ -1,3 +1,9 @@
+// Prevent the Angular html template from being briefly displayed by the browser in its raw (uncompiled) form while your application is loading.
+// https://docs.angularjs.org/api/ng/directive/ngCloak
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -19,4 +25,11 @@ header {
   padding: 0 1.25rem;
 }
 
+.errors {
+  padding: 1rem;
+  background-color: darkred;
+  color: white;
+}
+
 .map { margin: 0 -1.25rem }
+

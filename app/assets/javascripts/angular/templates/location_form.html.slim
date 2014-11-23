@@ -1,12 +1,11 @@
-#first-step
+.errors[ng-show="errors" ng-bind-html="errors"]
+
+.step.one[ng-hide="showMap"]
+  h1 Please select your photo
+  input[type="file" name="sign" ng-file-select="onFileSelect($files)"]
+  input[type="hidden" ng-model="location.longitude"]
+  input[type="hidden" ng-model="location.latitude"]
+
+.step.second[ng-show="showMap"]
   h1 Where is the sign located at?
   .map[map]
-
-#second-step
-  h1 Please select your photo
-  form enctype='multipart/form-data' ng-submit="createLocation()" accept-charset="UTF-8"
-    input[type="text" name="longitude" ng-model="location.longitude"]
-    input[type="text" name="latitude" ng-model="location.latitude"]
-    img ng-src="{{sign}}"
-    input[type="file" name="sign" ng-file-select="onFileSelect($files)"]
-    button[type="submit"] | {{progress}}

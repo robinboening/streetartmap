@@ -1,0 +1,9 @@
+@import "animate/bounceInUp";
+@import "animate/fadeOut";
+
+.step.one.ng-hide {
+  @include animate(fadeOut, 300ms);
+}
+.step.second.ng-hide-remove {
+  @include animate(bounceInUp, 1000ms);
+}
