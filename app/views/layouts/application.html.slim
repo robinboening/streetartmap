@@ -11,6 +11,6 @@ html ng-app="signart"
 
   body[ng-controller="mainCtrl"]
     header
-      = link_to 'Show List', root_path, class: 'button', "ng-class" => "{active:isActive('#{root_path}')}"
+      = link_to 'Vicinity', root_path, class: 'button', "ng-class" => "{active:isActive('#{root_path}')}"
       = link_to 'Add Sign', new_location_path, class: 'button', "ng-class" => "{active:isActive('#{new_location_path}')}"
     section.content[ng-view ng-cloak]
