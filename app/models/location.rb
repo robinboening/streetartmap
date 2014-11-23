@@ -7,7 +7,8 @@ class Location < ActiveRecord::Base
       obj.country = geo.country_code
     end
   end
-  validate :latitude, :longitude, :sign, presence: true
+
+  validates :latitude, :longitude, :sign, presence: true
   after_validation :reverse_geocode
 
   mount_uploader :sign, SignUploader
@@ -15,8 +16,4 @@ class Location < ActiveRecord::Base
   def full_address
     [street, zip, city, country].compact.reject(&:empty?).join(", ")
   end
-
-  # def self.default
-  #   Geocoder.coordinates("Berlin, Germany")
-  # end
 end
