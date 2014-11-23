@@ -41,6 +41,9 @@ gem 'spring', group: :development
 gem 'pry', group: :development
 gem 'dotenv-rails', groups: [:development, :test]
 
+# heroku
+gem 'rails_12factor', group: :production
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
