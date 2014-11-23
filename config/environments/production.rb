@@ -83,4 +83,5 @@ Rails.application.configure do
   config.lyrk_token = ENV['LYRK_TOKEN']
   config.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
   config.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+  config.aws_directory = ENV['AWS_DIRECTORY']
 end
