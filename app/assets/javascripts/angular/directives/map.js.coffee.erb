@@ -63,7 +63,7 @@ Signart.directive 'map', [ "$location", "leafletEvents", "leafletData", "Locatio
                   lng: 13.404954
                 }
             scope.center['autoDiscover'] = true unless $routeParams.id
-            scope.center['zoom'] = 14
+            scope.center['zoom'] = 16
 
           scope.$on 'leafletDirectiveMarker.mouseover', (event, args) ->
             scope.hovered_marker = args.markerName

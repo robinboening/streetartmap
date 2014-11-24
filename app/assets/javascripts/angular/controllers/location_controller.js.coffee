@@ -9,19 +9,48 @@ Signart.controller "locationCtrl", ['$scope', '$location', 'Location', '$routePa
       leafletData.getMap().then (map) ->
         map.invalidateSize()
 
+  convert_to_degrees = (value) ->
+    d0 = value[0]['numerator']
+    d1 = value[0]['denominator']
+    d = d0 / d1
+
+    m0 = value[1]['numerator']
+    m1 = value[1]['denominator']
+    m = m0 / m1
+
+    s0 = value[2]['numerator']
+    s1 = value[2]['denominator']
+    s = s0 / s1
+
+    return d + (m / 60.0) + (s / 3600.0)
+
+  calculate_gps_data = (file) ->
+    gps_latitude = EXIF.getTag(file, "GPSLatitude")
+    gps_latitude_ref = EXIF.getTag(file, 'GPSLatitudeRef')
+    gps_longitude = EXIF.getTag(file, 'GPSLongitude')
+    gps_longitude_ref = EXIF.getTag(file, 'GPSLongitudeRef')
+
+    if gps_latitude && gps_latitude_ref && gps_longitude && gps_longitude_ref
+      lat = convert_to_degrees(gps_latitude)
+      if gps_latitude_ref != "N"
+        lat = 0 - lat
+
+      lng = convert_to_degrees(gps_longitude)
+      if gps_longitude_ref != "E"
+        lng = 0 - lng
+
+      return [lat, lng]
+
   $scope.onFileSelect = ($files) ->
     angular.forEach $files, (file) ->
       if file.type in ["image/jpeg"]
         $scope.file = file
 
         EXIF.getData file, ->
-          latitude = EXIF.getTag(@, 'GPSLatitude')
-          longitude = EXIF.getTag(@, 'GPSLongitude')
-
-          if latitude && longitude
+          if gps_coords = calculate_gps_data(file)
             $scope.location = {
-              latitude: latitude
-              longitude: longitude
+              latitude: gps_coords[0]
+              longitude: gps_coords[1]
             }
             $scope.createLocation()
           else
