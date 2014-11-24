@@ -26,6 +26,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'fog'
 gem 'geocoder'
+gem 'country_select'
 gem 'activeadmin', github: 'activeadmin'
 
 # Use jquery as the JavaScript library
