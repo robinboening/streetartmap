@@ -3,11 +3,11 @@ module Api
     respond_to :json
 
     def index
-      respond_with(Location.all)
+      respond_with(Location.not_locked)
     end
 
     def show
-      respond_with(Location.find(params[:id]))
+      respond_with(Location.not_locked.find(params[:id]))
     end
 
     def create

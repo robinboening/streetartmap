@@ -13,6 +13,8 @@ class Location < ActiveRecord::Base
 
   mount_uploader :sign, SignUploader
 
+  scope :not_locked, ->{ where(locked: false) }
+
   def full_address
     [street, zip, city, country].compact.reject(&:empty?).join(", ")
   end
