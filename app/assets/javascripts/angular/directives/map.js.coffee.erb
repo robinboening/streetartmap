@@ -11,7 +11,10 @@ Signart.directive 'map', [ "$location", "leafletEvents", "leafletData", "Locatio
             options:
               apikey: 'ad096084a0a5478bada572b547d2cac2'
               attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, Tiles by <a href="http://geodienste.lyrk.de/">Lyrk</a>'
-          center: {}
+          center:
+            zoom: 2
+            lat: 52.52000659999999
+            lng: 13.404954
           defaults:
             scrollWheelZoom: false
           markers: []
@@ -57,11 +60,9 @@ Signart.directive 'map', [ "$location", "leafletEvents", "leafletData", "Locatio
                   lat: location['latitude']
                   lng: location['longitude']
                 }
-              else
-                scope.center = {
-                  lat: 52.52000659999999
-                  lng: 13.404954
-                }
+                leafletData.getMap().then (map) ->
+                  map.fitBounds([[location['latitude'], location['longitude']]])
+
             scope.center['autoDiscover'] = true unless $routeParams.id
             scope.center['zoom'] = 16
 
