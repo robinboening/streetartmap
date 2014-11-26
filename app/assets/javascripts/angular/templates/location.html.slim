@@ -1,7 +1,7 @@
 .map[map]
 
-.location[ng-switch on="location"]
-  .detail[ng-switch-when="!location.locked"]
+.location[ng-switch on="location.locked"]
+  .detail[ng-switch-when="false"]
     img[ng-src="{{location.picture}}"]
     h3
       | {{location.fullAddress}}<br>Uploaded at: {{location.createdAt}}
