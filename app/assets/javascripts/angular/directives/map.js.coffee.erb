@@ -49,11 +49,13 @@ Signart.directive 'map', [ "$location", "leafletEvents", "leafletData", "Locatio
         else
           markerLocation.query().then (locations) ->
             $(locations).each (index, location) ->
+              thumb = ''
+              thumb = "<img src='#{location['thumbnail']}'>" if location['thumbnail']
               scope.markers["#{location['id']}"] = {
                 lat: location['latitude'],
                 lng: location['longitude'],
                 focus: ("#{$routeParams.id}" == "#{location['id']}")
-                message: "<img src="+location['thumbnail']+"><p>#{location['fullAddress']}</p>"
+                message: "#{thumb}<p>#{location['fullAddress']}</p>"
               }
               if location['id'] == parseInt($routeParams.id, 10)
                 scope.center = {
