@@ -30,5 +30,7 @@ header {
   color: white;
 }
 
-.map { margin: 0 -1.25rem }
+.map {
+  @extend %collapsed;
+}
 

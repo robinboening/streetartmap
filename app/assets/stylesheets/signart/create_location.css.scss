@@ -7,3 +7,19 @@
 .step.second.ng-hide-remove {
   @include animate(bounceInUp, 1000ms);
 }
+
+.progress {
+  @extend %collapsed;
+
+  .inner {
+    @include transition-property(width);
+    @include transition-duration(0.4s);
+    text-align: right;
+    font-size: 12px;
+    height: 100%;
+    color: #FFF;
+    padding-right: 6px;
+    background: $primary-color;
+  }
+
+}

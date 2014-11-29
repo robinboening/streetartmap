@@ -9,6 +9,20 @@ Signart.controller "locationCtrl", ['$scope', '$location', 'Location', '$routePa
       leafletData.getMap().then (map) ->
         map.invalidateSize()
 
+  $scope.$watch "uploading", (value) ->
+    if value == false
+      $scope.uploadProgress = 0
+
+  if $location.path() == '/locations/new'
+    $scope.showMap = false
+    $scope.uploading = false
+  else if $routeParams.id
+    Location.get($routeParams.id).then (result) ->
+      $scope.location = result
+  else
+    Location.query().then (results) ->
+      $scope.locations = results
+
   convert_to_degrees = (value) ->
     d0 = value[0]['numerator']
     d1 = value[0]['denominator']
@@ -59,6 +73,8 @@ Signart.controller "locationCtrl", ['$scope', '$location', 'Location', '$routePa
             return
 
   $scope.createLocation = ->
+    $scope.uploading = true
+    $scope.uploadProgress = 0
     if $scope.location
       longitude = $scope.location.longitude
       latitude = $scope.location.latitude
@@ -77,19 +93,14 @@ Signart.controller "locationCtrl", ['$scope', '$location', 'Location', '$routePa
       headers:
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         'Accept': 'application/json'
+    .progress (evt) ->
+      $scope.uploadProgress = parseInt(100.0 * evt.loaded / evt.total)
     .error (data, status, headers, config) ->
       $scope.errors = headers('errors')
       $scope.showMap = true
+      $scope.uploading = false
     .success (data, status, headers, config) ->
+      $scope.uploading = false
       location_path = headers('location').substring($location.absUrl().length - $location.url().length) # fml
       $location.path(location_path)
-
-  if $location.path() == '/locations/new'
-    $scope.showMap = false
-  else if $routeParams.id
-    Location.get($routeParams.id).then (result) ->
-      $scope.location = result
-  else
-    Location.query().then (results) ->
-      $scope.locations = results
 ]

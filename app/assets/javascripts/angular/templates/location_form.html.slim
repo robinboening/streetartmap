@@ -1,11 +1,16 @@
 .errors[ng-show="errors" ng-bind-html="errors"]
 
-.step.one[ng-hide="showMap"]
+.uploading[ng-if="uploading"]
+  h4 Please wait while uploading. You will be redirected.
+  .progress
+    .inner[ng-bind-template="{{uploadProgress}}%" style="width: {{uploadProgress}}%"]
+
+.step.one[ng-hide="showMap || uploading"]
   h1 Please select your photo
   input[type="file" name="sign" ng-file-select="onFileSelect($files)"]
   input[type="hidden" ng-model="location.longitude"]
   input[type="hidden" ng-model="location.latitude"]
 
-.step.second[ng-show="showMap"]
+.step.second[ng-show="showMap && !uploading"]
   h1 Where did you take that picture?
   .map[map]
