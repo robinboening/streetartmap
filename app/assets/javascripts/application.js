@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require leaflet
 //= require exif-js/exif
+//= require ng-file-upload/dist/angular-file-upload-html5-shim
 //= require angular
 //= require angular-route
 //= require angular-resource
