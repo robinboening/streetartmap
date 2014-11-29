@@ -44,7 +44,6 @@ Signart.directive 'map', [ "$location", "leafletEvents", "leafletData", "Locatio
               focus: true
             }
 
-            scope.showMap = true
             scope.createLocation()
         else
           markerLocation.query().then (locations) ->
