@@ -11,6 +11,6 @@
  * file per style scope.
  *
  *= require leaflet
- *= require signart
+ *= require streetartmap
  *= require_self
  */

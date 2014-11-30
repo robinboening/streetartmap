@@ -1,4 +1,4 @@
-Signart.factory "markerLocation", ['RailsResource', 'railsSerializer', (RailsResource, railsSerializer) ->
+StreetartMap.factory "markerLocation", ['RailsResource', 'railsSerializer', (RailsResource, railsSerializer) ->
   class markerLocation extends RailsResource
     @configure
       url: '/api/locations',

@@ -1,4 +1,4 @@
-Signart.controller "locationCtrl", ['$scope', '$location', 'Location', '$routeParams', '$upload', 'leafletData', ($scope, $location, Location, $routeParams, $upload, leafletData) ->
+StreetartMap.controller "locationCtrl", ['$scope', '$location', 'Location', '$routeParams', '$upload', 'leafletData', ($scope, $location, Location, $routeParams, $upload, leafletData) ->
 
   $scope.$watch "showMap", (value) ->
     if value == true

@@ -1,4 +1,4 @@
-Signart.directive 'locations', ->
+StreetartMap.directive 'locations', ->
   return {
     restrict: 'E'
     replace: true

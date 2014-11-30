@@ -1,4 +1,4 @@
-Signart.factory "Location", ['RailsResource', (RailsResource) ->
+StreetartMap.factory "Location", ['RailsResource', (RailsResource) ->
   class Location extends RailsResource
     @configure
       url: '/api/locations/{{id}}',
@@ -6,6 +6,6 @@ Signart.factory "Location", ['RailsResource', (RailsResource) ->
 ]
 
 # Using ngResource
-# Signart.factory "LocationService", ['$resource', ($resource) ->
+# StreetartMap.factory "LocationService", ['$resource', ($resource) ->
 #   return $resource('/api/locations/:id', {id: "@id"})
 # ]

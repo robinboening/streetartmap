@@ -1,4 +1,4 @@
-Signart.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+StreetartMap.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $locationProvider.html5Mode(true)
 
   $routeProvider
